@@ -56,15 +56,39 @@
 		DC4BA2912C21D12600E1AA19 /* Tipsy */ = {
 			isa = PBXGroup;
 			children = (
-				DC4BA2922C21D12600E1AA19 /* AppDelegate.swift */,
-				DC4BA2942C21D12600E1AA19 /* SceneDelegate.swift */,
-				DC4BA2962C21D12600E1AA19 /* CalculatorViewController.swift */,
-				DC4BA2A62C22239B00E1AA19 /* ResultViewController.swift */,
+				DC4BA2AA2C22FFE700E1AA19 /* Model */,
+				DC4BA2A92C22FFD600E1AA19 /* Aplication */,
+				DC4BA2A82C22FFB500E1AA19 /* Controller */,
 				DC4BA29B2C21D12800E1AA19 /* Assets.xcassets */,
 				DC4BA29D2C21D12800E1AA19 /* LaunchScreen.storyboard */,
 				DC4BA2A02C21D12800E1AA19 /* Info.plist */,
 			);
 			path = Tipsy;
+			sourceTree = "<group>";
+		};
+		DC4BA2A82C22FFB500E1AA19 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DC4BA2962C21D12600E1AA19 /* CalculatorViewController.swift */,
+				DC4BA2A62C22239B00E1AA19 /* ResultViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		DC4BA2A92C22FFD600E1AA19 /* Aplication */ = {
+			isa = PBXGroup;
+			children = (
+				DC4BA2922C21D12600E1AA19 /* AppDelegate.swift */,
+				DC4BA2942C21D12600E1AA19 /* SceneDelegate.swift */,
+			);
+			path = Aplication;
+			sourceTree = "<group>";
+		};
+		DC4BA2AA2C22FFE700E1AA19 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

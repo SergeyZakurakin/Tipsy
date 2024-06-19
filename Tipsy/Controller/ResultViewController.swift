@@ -13,7 +13,9 @@ class ResultViewController: UIViewController {
     // MARK: - Propertis
     
     private let greenColor = UIColor(red: 0.16, green: 0.6, blue: 0.36, alpha: 1)
-    
+    var result: String?
+    var peopleNumber: String?
+    var tip: String?
     
     
     // MARK: - UI
@@ -82,8 +84,8 @@ extension ResultViewController {
         topStackView.addArrangedSubview(topResultLabel)
         
         topTitleLabel.text = "Total per person"
-        topResultLabel.text = "56.32"
-        descriptionLabel.text = "Split between 2 people, with 10% tip."
+        topResultLabel.text = result
+        descriptionLabel.text = "Split between \(peopleNumber ?? "") people, with \(tip ?? "")% tip."
     }
     
     func setupConstraint() {

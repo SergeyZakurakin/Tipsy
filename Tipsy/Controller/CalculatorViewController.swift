@@ -12,6 +12,11 @@ class CalculatorViewController: UIViewController {
     
     // MARK: - Propertis
     private let greenColor = UIColor(red: 0.16, green: 0.6, blue: 0.36, alpha: 1)
+    private var selectedTip = 0.0
+    private var userTap = 0
+    private var finalResult = ""
+    private var peopleNum = 2.0
+    
     
     // MARK: - UI
     private lazy var billTotalLabel = UILabel(textColor: .lightGray, fontSize: 25, alignment: .left)
@@ -51,22 +56,25 @@ class CalculatorViewController: UIViewController {
     
     private lazy var changeNumberOfPeople: UIStepper = {
         let element = UIStepper()
+        element.minimumValue = 2
         
         element.translatesAutoresizingMaskIntoConstraints = false
         return element
     }()
     
-    private lazy var zeroTipButton = UIButton(text: "0%")
-    private lazy var tenTipButton = UIButton(text: "10%")
-    private lazy var twentyTipButton = UIButton(text: "20%")
+    private lazy var zeroTipButton = UIButton(text: "\(0)%")
+    private lazy var tenTipButton = UIButton(text: "\(10)%")
+    private lazy var twentyTipButton = UIButton(text: "\(20)%")
     
     
     
     private lazy var countTextField: UITextField = {
         let element = UITextField()
         element.textAlignment = .center
-        element.placeholder = "e.g. 123.56"
+        element.placeholder = "e.g. \(123.56)"
         element.font = .systemFont(ofSize: 40)
+        element.keyboardType = .decimalPad
+        element.textColor = greenColor
         
         element.translatesAutoresizingMaskIntoConstraints = false
         return element
@@ -87,10 +95,22 @@ class CalculatorViewController: UIViewController {
     
     
     @objc private func calculatePressed(_ sender: UIButton) {
+        
+        let userTaped = countTextField.text!
+        if userTaped != "" {
+            let procent = selectedTip / 100
+            peopleNum = Double(numberOfPeopleLabel.text!)!
+            let result = Double(userTaped)! * (procent + 1) / peopleNum
+            finalResult = String(format: "%.2f", (result))
+        }
+        
         let resultVC = ResultViewController()
-//        resultVC.modalTransitionStyle = .flipHorizontal
+        resultVC.result = finalResult
+        resultVC.peopleNumber = String(format: "%.0f", peopleNum)
+        resultVC.tip = String(format: "%.0f", selectedTip)
+        
         resultVC.modalPresentationStyle = .fullScreen
-        present(resultVC, animated: true)
+        present(resultVC, animated: true, completion: nil)
         
     }
     
@@ -101,10 +121,17 @@ class CalculatorViewController: UIViewController {
         twentyTipButton.isSelected = false
         sender.isSelected = true
         
+        let userSelect = sender.titleLabel?.text?.dropLast()
+        
+        selectedTip = (Double(userSelect ?? "")!)
+        
+        
     }
     
     @objc private func stepperChanged(_ sender: UIStepper) {
         print(sender.value)
+        numberOfPeopleLabel.text = String(Int(sender.value))
+        
     }
     
     
